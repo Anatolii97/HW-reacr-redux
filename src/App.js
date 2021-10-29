@@ -6,7 +6,10 @@ import { getIsLoading } from './redux/contacts/contacts-selectors';
 import Loader from 'react-loader-spinner';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactsList from './components/ContactsList/ContactsList';
-import "./theme/App.css"
+import "./theme/App.css";
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const isLoading = useSelector(getIsLoading);
@@ -17,6 +20,8 @@ export default function App() {
   }, [dispatch]);
 
   return (
+    <>
+     <ToastContainer/>
     <div className="contact-book">
       <ContactForm />
       {isLoading ? (
@@ -24,5 +29,6 @@ export default function App() {
       ) : null}
       <ContactsList />
     </div>
+    </>
   );
 }

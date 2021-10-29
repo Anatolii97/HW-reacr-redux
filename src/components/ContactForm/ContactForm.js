@@ -5,6 +5,7 @@ import './ContactForm.css';
 import { addContact } from '../../redux/contacts/contacts-operations';
 import { getIsAdded } from '../../redux/contacts/contacts-selectors';
 import { Grid, Header } from 'semantic-ui-react';
+import { toast } from 'react-toastify';
 
 export default function ContactsForm() {
   const [name, setName] = useState('');
@@ -17,7 +18,7 @@ export default function ContactsForm() {
     e.preventDefault();
 
     if (isAdded(phone)) {
-      return alert(`${phone} is already in contacts`);
+      return toast.info(`${phone} is already exist`);
     } else {
       dispatch(addContact(name, phone, location));
     }
@@ -39,7 +40,7 @@ export default function ContactsForm() {
           </Grid.Column>
         </Grid.Row>
         </Grid>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form onSubmit={handleSubmit}>
         <div className="group">
         <input
           className="contact-input"
